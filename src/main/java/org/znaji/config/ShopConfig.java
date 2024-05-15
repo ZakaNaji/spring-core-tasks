@@ -18,4 +18,9 @@ public class ShopConfig {
     public Product cdrw() {
         return new Disc("CD-RW", 1.5, 700);
     }
+
+    @Bean
+    public Product dvdrw() {
+        return new Disc("DVD-RW", 3.0, 4000);
+    }
 }
