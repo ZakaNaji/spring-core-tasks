@@ -1,9 +1,8 @@
-package org.znaji;
+package org.znaji.shop;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.znaji.config.ShopConfig;
-import org.znaji.entity.Product;
-import org.znaji.entity.ShoppingCart;
+import org.znaji.shop.entity.Product;
+import org.znaji.shop.entity.ShoppingCart;
 
 public class Main {
     public static void main(String[] args) {

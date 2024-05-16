@@ -1,4 +1,4 @@
-package org.znaji.entity;
+package org.znaji.shop.entity;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;

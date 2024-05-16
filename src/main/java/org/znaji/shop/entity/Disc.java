@@ -1,4 +1,4 @@
-package org.znaji.entity;
+package org.znaji.shop.entity;
 
 public class Disc extends Product{
 

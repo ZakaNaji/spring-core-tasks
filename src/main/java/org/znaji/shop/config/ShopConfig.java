@@ -1,12 +1,12 @@
-package org.znaji.config;
+package org.znaji.shop.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
-import org.znaji.entity.Battery;
-import org.znaji.entity.Product;
-import org.znaji.entity.Disc;
+import org.znaji.shop.entity.Battery;
+import org.znaji.shop.entity.Product;
+import org.znaji.shop.entity.Disc;
 
 @Configuration
 @PropertySource("classpath:discounts.properties")
