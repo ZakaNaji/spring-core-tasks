@@ -1,9 +1,11 @@
 package org.znaji.shop.config;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.znaji.shop.entity.Battery;
 import org.znaji.shop.entity.Product;
 import org.znaji.shop.entity.Disc;
@@ -12,8 +14,14 @@ import org.znaji.shop.entity.Disc;
 @PropertySource("classpath:discounts.properties")
 public class ShopConfig {
 
-    @Value("${endofyear.discount:0}")
-    private double specialEndOfYearDiscountField;
+
+    @Bean
+    public ReloadableResourceBundleMessageSource messageSource() {
+        var messageSource = new ReloadableResourceBundleMessageSource();
+        messageSource.setBasename("classpath:messages");
+        messageSource.setCacheSeconds(1);
+        return messageSource;
+    }
 
     @Bean
     public Product aaa() {
@@ -27,6 +35,6 @@ public class ShopConfig {
 
     @Bean
     public Product dvdrw() {
-        return new Disc("DVD-RW", 4000- specialEndOfYearDiscountField, 4000);
+        return new Disc("DVD-RW", 4000, 4000);
     }
 }
