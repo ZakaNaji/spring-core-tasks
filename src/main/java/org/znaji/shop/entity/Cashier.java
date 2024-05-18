@@ -1,5 +1,7 @@
 package org.znaji.shop.entity;
 
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Component;
 
@@ -24,6 +26,7 @@ public class Cashier {
         this.path = path;
     }
 
+    @PostConstruct
     public void openFile() throws IOException {
         Path checkoutPath = Path.of(path, fileName + ".txt");
         if (Files.notExists(checkoutPath.getParent())) {
@@ -37,6 +40,7 @@ public class Cashier {
         writer.write(LocalDateTime.now() + "\t" + cart.getItems() + "\r\n");
     }
 
+    @PreDestroy
     public void closeFile() throws IOException {
         if (writer != null) {
             writer.close();

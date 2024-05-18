@@ -39,7 +39,7 @@ public class ShopConfig {
         return new Disc("DVD-RW", 4000, 4000);
     }
 
-    @Bean(initMethod = "openFile", destroyMethod = "closeFile", name = "theCashier")
+    @Bean(name = "theCashier")
     public Cashier cashier() {
         String tempFolder = System.getProperty("java.io.tmpdir") + "/cashier";
         return new Cashier("checkout", tempFolder);
