@@ -6,10 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
-import org.znaji.shop.entity.Battery;
-import org.znaji.shop.entity.Cashier;
-import org.znaji.shop.entity.Product;
-import org.znaji.shop.entity.Disc;
+import org.znaji.shop.entity.*;
 
 @Configuration
 @PropertySource("classpath:discounts.properties")
@@ -26,17 +23,17 @@ public class ShopConfig {
 
     @Bean
     public Product aaa() {
-        return new Battery("AAA", 2.5, true);
+        return ProductGenerator.generateProduct("aaa");
     }
 
     @Bean
     public Product cdrw() {
-        return new Disc("CD-RW", 1.5, 700);
+        return ProductGenerator.generateProduct("cdrw");
     }
 
     @Bean
     public Product dvdrw() {
-        return new Disc("DVD-RW", 4000, 4000);
+        return ProductGenerator.generateProduct("dvdrw");
     }
 
     @Bean(name = "theCashier")
