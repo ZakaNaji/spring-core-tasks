@@ -1,13 +1,18 @@
 package org.znaji.shop.entity;
 
-public class ProductGenerator {
-    public static Product generateProduct(final String productId) {
+import java.util.Map;
 
-        return switch (productId) {
-            case "aaa" -> new Battery("AAA", 2.5, true);
-            case "cdrw" -> new Disc("CD-RW", 1.5, 700);
-            case "dvdrw" -> new Disc("DVD-RW", 4000, 4000);
-            default -> throw new IllegalArgumentException("Unknown product");
-        };
+public class ProductGenerator {
+    private final Map<String, Product> products;
+
+    public ProductGenerator(Map<String, Product> products) {
+        this.products = products;
+    }
+
+    public Product generateProduct(String name) {
+        if (products.containsKey(name)) {
+            return products.get(name);
+        }
+        throw new IllegalArgumentException("Unknown product: " + name);
     }
 }

@@ -8,6 +8,8 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.znaji.shop.entity.*;
 
+import java.util.Map;
+
 @Configuration
 @PropertySource("classpath:discounts.properties")
 public class ShopConfig {
@@ -22,18 +24,27 @@ public class ShopConfig {
     }
 
     @Bean
-    public Product aaa() {
-        return ProductGenerator.generateProduct("aaa");
+    public ProductGenerator productGenerator() {
+        var products = Map.of(
+                "aaa", new Battery("AAA", 2.5, true),
+                "cdrw", new Disc("CD-RW", 1.5, 700),
+                "dvdrw", new Disc("DVD-RW", 3.0, 4700));
+        return new ProductGenerator(products);
+    }
+
+        @Bean
+    public Product aaa(ProductGenerator productGenerator) {
+        return productGenerator.generateProduct("aaa");
     }
 
     @Bean
-    public Product cdrw() {
-        return ProductGenerator.generateProduct("cdrw");
+    public Product cdrw(ProductGenerator productGenerator) {
+        return productGenerator.generateProduct("cdrw");
     }
 
     @Bean
-    public Product dvdrw() {
-        return ProductGenerator.generateProduct("dvdrw");
+    public Product dvdrw(ProductGenerator productGenerator) {
+        return productGenerator.generateProduct("dvdrw");
     }
 
     @Bean(name = "theCashier")
