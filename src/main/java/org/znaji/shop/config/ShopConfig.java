@@ -1,5 +1,6 @@
 package org.znaji.shop.config;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
@@ -26,7 +27,7 @@ public class ShopConfig {
     @Bean
     public ProductGenerator productGenerator() {
         var products = Map.of(
-                "aaa", new Battery("AAA", 2.5, true),
+                "aaa", new Battery("AAA", 100, true),
                 "cdrw", new Disc("CD-RW", 1.5, 700),
                 "dvdrw", new Disc("DVD-RW", 3.0, 4700));
         return new ProductGenerator(products);
@@ -51,5 +52,13 @@ public class ShopConfig {
     public Cashier cashier() {
         String tempFolder = System.getProperty("java.io.tmpdir") + "/cashier";
         return new Cashier("checkout", tempFolder);
+    }
+
+    @Bean
+    public DiscountBeanFactory discountFactoryAaa(@Qualifier("aaa") final Product aaa) {
+        var factory = new DiscountBeanFactory();
+        factory.setProduct(aaa);
+        factory.setDiscount(0.5);
+        return factory;
     }
 }

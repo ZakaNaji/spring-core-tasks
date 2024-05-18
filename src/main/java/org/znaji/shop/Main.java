@@ -16,10 +16,8 @@ public class Main {
         try (var context = new AnnotationConfigApplicationContext("org.znaji.shop")) {
             ShoppingCart cart = context.getBean(ShoppingCart.class);
             cart.addItem(context.getBean("aaa", Product.class));
-            cart.addItem(context.getBean("cdrw", Product.class));
 
-            Cashier cashier = context.getBean("theCashier" ,Cashier.class);
-            cashier.checkout(cart);
+            System.out.println("Shopping cart: " + cart.getItems());
         }
     }
 }
