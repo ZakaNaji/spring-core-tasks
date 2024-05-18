@@ -6,20 +6,20 @@ import org.znaji.shop.entity.Cashier;
 import org.znaji.shop.entity.Product;
 import org.znaji.shop.entity.ShoppingCart;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.Locale;
 
 public class Main {
     public static final String MSG = "The I18N message for %s is: %s%n";
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         try (var context = new AnnotationConfigApplicationContext("org.znaji.shop")) {
-           var alertCheckout = context.getMessage("alert.checkout", null, Locale.FRANCE);
-           var alertInventoryCheck = context.getMessage("alert.inventory.checkout", new Object[] {"[DVD-RW 3.0]", LocalDateTime.now()}, Locale.FRANCE);
-            System.out.printf(MSG, "alert.checkout", alertCheckout);
-            System.out.printf(MSG, "alert.inventory.checkout", alertInventoryCheck);
+            ShoppingCart cart = context.getBean(ShoppingCart.class);
+            cart.addItem(context.getBean("aaa", Product.class));
+            cart.addItem(context.getBean("cdrw", Product.class));
 
-            Cashier cashier = context.getBean(Cashier.class);
-            cashier.checkout();
+            Cashier cashier = context.getBean("theCashier" ,Cashier.class);
+            cashier.checkout(cart);
         }
     }
 }

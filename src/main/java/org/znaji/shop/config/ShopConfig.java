@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.znaji.shop.entity.Battery;
+import org.znaji.shop.entity.Cashier;
 import org.znaji.shop.entity.Product;
 import org.znaji.shop.entity.Disc;
 
@@ -36,5 +37,11 @@ public class ShopConfig {
     @Bean
     public Product dvdrw() {
         return new Disc("DVD-RW", 4000, 4000);
+    }
+
+    @Bean(initMethod = "openFile", destroyMethod = "closeFile", name = "theCashier")
+    public Cashier cashier() {
+        String tempFolder = System.getProperty("java.io.tmpdir") + "/cashier";
+        return new Cashier("checkout", tempFolder);
     }
 }
