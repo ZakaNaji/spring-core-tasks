@@ -2,6 +2,7 @@ package org.znaji.shop.entity;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
+import org.springframework.beans.factory.BeanNameAware;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Component;
 
@@ -16,13 +17,12 @@ import java.time.LocalDateTime;
 import java.util.Locale;
 
 
-public class Cashier {
-    private final String fileName;
+public class Cashier implements BeanNameAware {
+    private String fileName;
     private final String path;
     private BufferedWriter writer;
 
-    public Cashier(String fileName, String path) {
-        this.fileName = fileName;
+    public Cashier(String path) {
         this.path = path;
     }
 
@@ -46,5 +46,10 @@ public class Cashier {
             writer.close();
             System.out.println("File closed: " + Paths.get(path, fileName + ".txt"));
         }
+    }
+
+    @Override
+    public void setBeanName(String name) {
+        this.fileName = name;
     }
 }

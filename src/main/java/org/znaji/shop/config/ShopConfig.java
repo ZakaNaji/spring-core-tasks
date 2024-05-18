@@ -51,7 +51,7 @@ public class ShopConfig {
     @Bean(name = "theCashier")
     public Cashier cashier() {
         String tempFolder = System.getProperty("java.io.tmpdir") + "/cashier";
-        return new Cashier("checkout", tempFolder);
+        return new Cashier(tempFolder);
     }
 
     @Bean
