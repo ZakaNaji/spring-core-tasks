@@ -5,7 +5,7 @@ import org.aspectj.lang.annotation.Pointcut;
 
 @Aspect
 public class CalculatorPointCuts {
-    @Pointcut("execution(* org.znaji.calculator.entity.ArithmeticCalculator.*(..))")
+    @Pointcut("@annotation(org.znaji.calculator.aspect.LoggingRequired)")
     public void arithmeticOperation() {
     }
 }

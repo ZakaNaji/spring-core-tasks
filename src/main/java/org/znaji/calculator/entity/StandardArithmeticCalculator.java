@@ -1,8 +1,10 @@
 package org.znaji.calculator.entity;
 
 import org.springframework.stereotype.Component;
+import org.znaji.calculator.aspect.LoggingRequired;
 
 @Component
+
 public class StandardArithmeticCalculator implements ArithmeticCalculator{
     @Override
     public double add(double a, double b) {
@@ -19,6 +21,7 @@ public class StandardArithmeticCalculator implements ArithmeticCalculator{
     }
 
     @Override
+    @LoggingRequired
     public double mul(double a, double b) {
         var result = a * b;
         System.out.printf("%.2f * %.2f = %.2f\n", a, b, result);
