@@ -10,10 +10,10 @@ import org.springframework.stereotype.Component;
 @Component
 @Aspect
 @Slf4j
-@Order(1)
+@Order(0)
 public class CalculatorLoginAspect {
 
-    @Around("execution(* org.znaji.calculator.entity.ArithmeticCalculator.*(..))")
+    @Around("org.znaji.calculator.aspect.CalculatorPointCuts.arithmeticOperation()")
     public Object logAround(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
         var name = proceedingJoinPoint.getSignature().getName();
         var args = proceedingJoinPoint.getArgs();

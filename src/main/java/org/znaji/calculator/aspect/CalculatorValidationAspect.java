@@ -8,9 +8,9 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Aspect
-@Order(0)
+@Order(1)
 public class CalculatorValidationAspect {
-    @Before("execution(* org.znaji.calculator.entity.ArithmeticCalculator.*(..))")
+    @Before("org.znaji.calculator.aspect.CalculatorPointCuts.arithmeticOperation()")
     public void validateBefore(JoinPoint jp) {
         var args = jp.getArgs();
         for (var arg : args) {
