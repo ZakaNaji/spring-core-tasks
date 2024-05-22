@@ -1,0 +1,10 @@
+<!DOCTYPE aspectj PUBLIC "-//AspectJ//DTD//EN"
+        "http://www.eclipse.org/aspectj/dtd/aspectj.dtd">
+<aspectj>
+    <weaver options="-verbose">
+        <include within="org.znaji.calculator.entity.Complex"/>
+    </weaver>
+    <aspects>
+        <aspect name="org.znaji.calculator.aspect.ComplexCalculatorCashingAspect"/>
+    </aspects>
+</aspectj>
